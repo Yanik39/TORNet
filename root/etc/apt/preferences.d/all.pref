@@ -1,0 +1,38 @@
+Package: *
+Pin: release o=TorProject
+Pin: origin deb.torproject.org
+Pin-Priority: 1040
+
+Package: *
+Pin: release o=deb.sury.org
+Pin: origin packages.sury.org
+Pin-Priority: 1030
+
+Package: *
+Pin: release o=nginx
+Pin: origin nginx.org
+Pin-Priority: 1020
+
+Package: *
+Pin: origin mirrors.ukfast.co.uk
+Pin-Priority: 1010
+
+Package: libzstd1
+Pin: release a=stable
+Pin-Priority: 1100
+
+Package: *
+Pin: release  a=stable
+Pin-Priority: 700
+
+Package: *
+Pin: release a=buster-backports
+Pin-Priority: 650
+
+Package: *
+Pin: release  a=testing
+Pin-Priority: 800
+
+Package: *
+Pin: release a=unstable
+Pin-Priority: 100

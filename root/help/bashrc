@@ -1,0 +1,4 @@
+alias ls='ls -alnh --color=auto'
+alias hs='cat /home/tor/hidden-services/*/hostname'
+alias ns='netstat -lnp'
+alias hc='/help/HealthCheck'

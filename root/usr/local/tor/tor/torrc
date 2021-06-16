@@ -1,0 +1,28 @@
+RunAsDaemon 0
+DataDirectory /home/tor/tor/data
+
+SocksPort 127.0.0.1:9050 IsolateDestAddr IsolateDestPort
+ControlPort 127.0.0.1:9051
+CookieAuthentication 1
+
+DNSPort 9053
+AutomapHostsOnResolve 1
+AutomapHostsSuffixes .exit,.onion
+
+AvoidDiskWrites 1
+TruncateLogFile  1
+HardwareAccel 1
+FetchDirInfoEarly 1
+FetchDirInfoExtraEarly 1
+FetchUselessDescriptors 1
+
+Log notice file /home/tor/logs/tor.log
+
+HiddenServiceDir /home/tor/hidden-services/service_1
+HiddenServicePort 80 unix:/var/run/nginx/host_1.sock
+
+StrictNodes 1
+GeoIPExcludeUnknown 1
+# Five Eyes: U.S., Australia, Canada, New Zealand, U.K.
+ExcludeNodes {us},{au},{ca},{nz},{gb}
+ExcludeExitNodes {us},{au},{ca},{nz},{gb}
