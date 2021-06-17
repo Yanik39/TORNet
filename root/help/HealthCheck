@@ -19,7 +19,7 @@ then
 	if [[ $return2 == 0 ]]
 	then
 		echo "[Pass: Debian Onion Address]"
-		timeout 10s torsocks curl -s -I --http1.1 --max-time 9 "http://$ownhost" | grep -q 200
+		timeout 10s torsocks curl -s -I --http1.1 --max-time 9 "http://$ownhost" | grep -q nginx
 		return3=$?
 		if [[ $return3 == 0 ]]
 		then
