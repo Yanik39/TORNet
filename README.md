@@ -1,10 +1,10 @@
-### TorNet: All in One Container for Hidden Services
+### TORNet: All in One Container for Hidden Services
 
-TorNet is all in one system to work as hidden-service. TorNet has all necessary applications such as NGINX, PHP-FPM, MariaDB to host your hidden service. 
+TORNet is all in one system to work as hidden-service. TORNet has all necessary applications such as NGINX, PHP-FPM, MariaDB to host your hidden service. 
 And also to secure and optimize Tor connection, latest version of Vanguards is also installed along side with Tor monitoring software NYX. Also dnsmasq is handling all DNS queries over Tor connection.
 
 #### Notes
-  * It's wise to use seperate Docker Network for TorNet.
+  * It's wise to use seperate Docker Network for TORNet.
  
       * `docker network create PrivateNet`
 
@@ -24,11 +24,11 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
   docker network create PrivateNet
   
   docker run -d 
-    --name TorNet \
+    --name TORNet \
     -e UID=$(id -u) \
     -e GID=$(id -g) \
-    -v ~/docker/TorNet:/home/tor \
-    --hostname TorNet \
+    -v ~/docker/TORNet:/home/tor \
+    --hostname TORNet \
     --network PrivateNet \
     --restart unless-stopped \  
     yanik39/tornet:latest
@@ -45,7 +45,7 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
       * `supervisorctl restart TOR` ..etc.
 
 #### Bash Terminal Aliases
-  * `hs` to get domain names hosted at your TorNet.
+  * `hs` to get domain names hosted at your TORNet.
   * `ns` to see listening sockets and ports.
   * `hc` to manualy trigger HealthCheck.
 
