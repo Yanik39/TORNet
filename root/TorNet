@@ -112,7 +112,8 @@ fi
 if [[ ! -f "/home/tor/.bashrc" ]]
 then
 	echo "Copying Default/Custom .bashrc"
-    	cp /help/bashrc /home/tor/.bashrc
+    cp /help/bashrc /home/tor/.bashrc
+	rm /root/.bashrc
 	cp /help/bashrc /root/.bashrc
 fi
 if [[ ! -f "/home/tor/vanguards/vanguards.py" ]] && [[ ! -d "/home/tor/vanguards/vanguards" ]]
