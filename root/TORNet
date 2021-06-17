@@ -33,10 +33,10 @@ fi
 echo "Creating NGINX/PHP Socks folder"
 echo "Creating NGINX/TOR Socks folder" 
 echo "Creating MariaDB Socks folder"
-rm -rf /run/php /run/nginx /run/mysqld
-mkdir -p /run/php /run/nginx /run/mysqld
-chmod 700 /run/mysqld
-chown mysql:root /run/mysqld
+rm -rf /var/run/php /var/run/nginx /var/run/mysqld
+mkdir -p /var/run/php /var/run/nginx /var/run/mysqld
+chmod 700 /var/run/mysqld
+chown mysql:root /var/run/mysqld
 if [[ ! -f "/home/tor/tor/torrc" ]]
 then
 	echo "Copying default Tor config file"
@@ -55,8 +55,8 @@ else
 fi
 if [[ ! -d "/home/tor/hidden-services" ]]
 then
-	echo "Creating Hidden-Services folder"
-    	mkdir -p /home/tor/hidden-services
+	echo "Copying default Hidden-Services folder"
+    	cp -r /usr/local/tor/hidden-services /home/tor/
 fi
 if [[ ! -d "/home/tor/nginx" ]]
 then
