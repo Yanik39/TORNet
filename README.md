@@ -33,6 +33,16 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
     --restart unless-stopped \  
     yanik39/tornet:latest
   ```
+  
+#### Supervisor
+  * Supervisor is controlling all services.
+  * You may control Supervisor with Supervisorctl
+      
+      * `supervisorctl status`
+
+      * `supervisorctl reload`
+
+      * `supervisorctl restart TOR` ..etc.
 
 #### Bash Terminal Aliases
   * `hs` to get domain names hosted at your TorNet.
@@ -49,5 +59,5 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
  * `MariaDB/MySQL` secure_install is done after first install. Any you get the auto generated random password at home folder.
  * If you messed with configs/files etc. just delete file/folder to get default ones after restart of the container.
  * Vanguards is hardening tor connections. I suggest to check it out.
- * 5-Eye countries are blocked as any kind of nodes (Exit or middle). There is some warnings about this at tor logs, but safe to ignore.
+ * 5-Eye countries are blocked as any kind of nodes (exit or middle). There is some warnings about this at tor logs, but safe to ignore.
  * Nyx is ready to run to check tor connection with nice GUI. With proper settings at home folder.
