@@ -4,11 +4,11 @@ TORNet is all in one system to work as hidden-service. TORNet has all necessary 
 And also to secure and optimize Tor connection, latest version of Vanguards is also installed along side with Tor monitoring software NYX. Also dnsmasq is handling all DNS queries over Tor connection.
 
 #### Notes
-  * It's wise to use seperate Docker Network for TORNet.
+  * It's wise to use separate Docker Network for TORNet.
  
       * `docker network create PrivateNet`
 
-  * To avoid permission issues pass your UID and GID as ENV variable. Please run following commands at your terminal to get your UID and GID, if you dont know them already.
+  * To avoid permission issues pass your UID and GID as ENV variable. Please run following commands at your terminal to get your UID and GID, if you don't know them already.
  
       * UID: `id -u`
       * GID: `id -g`
@@ -16,7 +16,7 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
   * It's better not to pass your Timezone to Container, default is UTC.
   * You will get your random MariaDB/MySQL password at your `/home/tor/mariadb` folder.
   * Please delete or rename the `phpinfo.php` file at `/home/tor/www/host_1/public_html` Which is there to check everything is working.
-  * Its better to use Nyx as tor user (`su tor`). To avoid warnings about being root and to use config file which is located at home folder.
+  * It's better to use Nyx as tor user (`su tor`). To avoid warnings about being root and to use configuration file which is located at tor home folder.
 
 #### Deploy
 
@@ -36,7 +36,7 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
   
 #### Supervisor
   * Supervisor is controlling all services.
-  * You may control Supervisor with Supervisorctl
+  * You may control Supervisor with SupervisorCTL
       
       * `supervisorctl status`
 
@@ -47,17 +47,17 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
 #### Bash Terminal Aliases
   * `hs` to get domain names hosted at your TORNet.
   * `ns` to see listening sockets and ports.
-  * `hc` to manualy trigger HealthCheck.
+  * `hc` to manually trigger HealthCheck.
 
 ### Some Features
- * `tor <-> nginx` connection is established with socket. Nginx is not listening any ip or port.
+ * `tor <-> nginx` connection is established with socket. Nginx is not listening any IP or port.
  * `nginx <-> php8.0-fpm` connection is established with socket.
  * `nginx` is hardened, so exposing nothing.
  * `php` is hardened by disabling any settings exposes any info.
- * `php-fpm` clears all env variables.
- * `supervisor <-> supervisorctl` connection is secured with auto created random password.
- * `MariaDB/MySQL` secure_install is done after first install. Any you get the auto generated random password at home folder.
- * If you messed with configs/files etc. just delete file/folder to get default ones after restart of the container.
+ * `php-fpm` clears all ENV variables.
+ * `supervisor <-> supervisorctl` connection is secured with auto generated random password.
+ * `MariaDB/MySQL` mysql_secure_install is done after first install. Any you get the auto generated random password at tor home folder.
+ * If you messed with configurations/files/folders etc. just delete file/folder to get default ones after restart of the container.
  * Vanguards is hardening tor connections. I suggest to check it out.
  * 5-Eye countries are blocked as any kind of nodes (exit or middle). There is some warnings about this at tor logs, but safe to ignore.
- * Nyx is ready to run to check tor connection with nice GUI. With proper settings at home folder.
+ * Nyx is ready to run to check tor connection with nice GUI. With proper settings at tor home folder.
