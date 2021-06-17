@@ -149,6 +149,7 @@ echo "Copying proper resolv.conf"
 cp /help/resolv.conf /etc/resolv.conf
 echo "Fixing permissions"
 echo 0 > /help/HealthCount
+chmod 777 /help/HealthCount
 /bin/bash /help/fix_permissions.sh &
 
 echo ""
