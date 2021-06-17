@@ -55,8 +55,8 @@ else
 fi
 if [[ ! -d "/home/tor/hidden-services" ]]
 then
-	echo "Copying default Hidden-Services folder"
-    	cp -r /usr/local/tor/hidden-services /home/tor/
+	echo "Creating Hidden-Services folder"
+    	mkdir -p /home/tor/hidden-services
 fi
 if [[ ! -d "/home/tor/nginx" ]]
 then
