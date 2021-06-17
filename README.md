@@ -16,6 +16,7 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
   * It's better not to pass your Timezone to Container, default is UTC.
   * You will get your random MariaDB/MySQL password at your `/home/tor/mariadb` folder.
   * Please delete or rename the `phpinfo.php` file at `/home/tor/www/host_1/public_html` Which is there to check everything is working.
+  * Its better to use Nyx as tor user (`su tor`). To avoid warnings about being root and to use config file which is located at home folder.
 
 #### Deploy
 
@@ -38,3 +39,15 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
   * `ns` to see listening sockets and ports.
   * `hc` to manualy trigger HealthCheck.
 
+### Some Features
+ * `tor <-> nginx` connection is established with socket. Nginx is not listening any ip or port.
+ * `nginx <-> php8.0-fpm` connection is established with socket.
+ * `nginx` is hardened, so exposing nothing.
+ * `php` is hardened by disabling any settings exposes any info.
+ * `php-fpm` clears all env variables.
+ * `supervisor <-> supervisorctl` connection is secured with auto created random password.
+ * `MariaDB/MySQL` secure_install is done after first install. Any you get the auto generated random password at home folder.
+ * If you messed with configs/files etc. just delete file/folder to get default ones after restart of the container.
+ * Vanguards is hardening tor connections. I suggest to check it out.
+ * 5-Eye countries are blocked as any kind of nodes (Exit or middle). There is some warnings about this at tor logs, but safe to ignore.
+ * Nyx is ready to run to check tor connection with nice GUI. With proper settings at home folder.
