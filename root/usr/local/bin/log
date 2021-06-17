@@ -1,0 +1,66 @@
+#!/bin/bash
+
+state="disabled"
+
+if [[ ! -f /help/log_state ]]
+then
+	echo $state > /help/log_state
+else
+	state=$(cat /help/log_state)
+fi
+
+function restart()
+{
+	supervisorctl reread
+        supervisorctl reload
+}
+
+function enableall()
+{
+	sed -i "s/logfile = .*/logfile = \/home\/tor\/supervisor\/supervisord.log/g" /etc/supervisor/supervisord.conf
+        sed -i "s/childlogdir = .*/childlogdir = \/home\/tor\/supervisor/g" /etc/supervisor/supervisord.conf
+        sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_withlog.conf/g" /etc/supervisor/supervisord.conf
+        restart
+}
+
+function disableall()
+{
+	sed -i "s/logfile = .*/logfile = \/dev\/null/g" /etc/supervisor/supervisord.conf
+	sed -i "s/childlogdir = .*/childlogdir = \/tmp/g" /etc/supervisor/supervisord.conf
+	sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_nolog.conf/g" /etc/supervisor/supervisord.conf
+	restart
+	rm -rf /home/tor/supervisor/*.log /home/tor/logs/*.log /tmp/*.log
+}
+
+function enable()
+{
+	state="enabled"
+	echo $state
+	echo $state > /help/log_state
+	enableall
+}
+
+function disable()
+{
+	state="disabled"
+	echo $state
+	echo $state > /help/log_state
+	disableall
+}
+
+if [[ "$1" == "status" ]]
+then
+	echo $state
+elif [[ "$1" == "enable" ]]
+then
+	enable
+elif [[ "$1" == "disable" ]]
+then
+	disable
+elif [[ "$1" == "" ]]
+then
+	disable
+else
+	echo "Unknow Command"
+	echo "Options: status, enable, disable"
+fi
