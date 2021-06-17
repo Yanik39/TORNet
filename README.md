@@ -15,7 +15,7 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
 
   * It's better not to pass your Timezone to Container, default is UTC.
   * You will get your random MariaDB/MySQL password at your `/home/tor/mariadb` folder.
-  * Please delete or rename the phpinfo.php file at `/home/tor/www/host_1/public_html` which is there to check everything is working.
+  * Please delete or rename the `phpinfo.php` file at `/home/tor/www/host_1/public_html` Which is there to check everything is working.
 
 #### Deploy
 
