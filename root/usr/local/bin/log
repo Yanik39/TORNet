@@ -19,7 +19,7 @@ function enableall()
 {
 	sed -i "s/logfile = .*/logfile = \/home\/tor\/supervisor\/supervisord.log/g" /etc/supervisor/supervisord.conf
         sed -i "s/childlogdir = .*/childlogdir = \/home\/tor\/supervisor/g" /etc/supervisor/supervisord.conf
-        sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_withlog.conf/g" /etc/supervisor/supervisord.conf
+        sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_WithLog.conf/g" /etc/supervisor/supervisord.conf
         restart
 }
 
@@ -27,7 +27,7 @@ function disableall()
 {
 	sed -i "s/logfile = .*/logfile = \/dev\/null/g" /etc/supervisor/supervisord.conf
 	sed -i "s/childlogdir = .*/childlogdir = \/tmp/g" /etc/supervisor/supervisord.conf
-	sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_nolog.conf/g" /etc/supervisor/supervisord.conf
+	sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_NoLog.conf/g" /etc/supervisor/supervisord.conf
 	restart
 	rm -rf /home/tor/supervisor/*.log /home/tor/logs/*.log /tmp/*.log
 }
