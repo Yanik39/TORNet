@@ -1,0 +1,159 @@
+#!/bin/bash
+
+uid=$(id -u tor)
+gid=$(id -g tor)
+
+echo ""
+echo "Welcome to TORNet"
+echo ""
+echo "Docker Repo: https://hub.docker.com/r/yanik39/tornet"
+echo "Github Repo: https://github.com/TemhAAhmeT/TORNet"
+echo ""
+echo "Going to check default Files/Folders"
+echo "Defaults Folder is (/usr/local/tor)"
+echo ""
+
+if [[ ! -f "/help/first_run_done" ]]
+then
+	echo "Checking Debian updates before First Run"
+	echo "Checking Python PIP updates before First Run"
+    	/bin/bash /help/check_updates.sh
+	echo "System is now UpToDate"
+	echo "Checking UID and GID"
+	[ "$uid" -eq "$UID" ] || usermod -u $UID tor
+	[ "$gid" -eq "$GID" ] || groupmod -g $GID tor
+	echo "Copying proper dnsmasq.conf"
+	cp /help/dnsmasq.conf /etc/dnsmasq.conf
+	echo "Creating symbolic links for Python"
+	ln -s /usr/local/bin/python3.9 /usr/bin/python3
+else
+	echo "Not First Run, So skipping updates"
+	echo "To update system properly; Please run (/help/check_updates.sh)"
+fi
+echo "Creating NGINX/PHP Socks folder"
+echo "Creating NGINX/TOR Socks folder" 
+echo "Creating MariaDB Socks folder"
+rm -rf /run/php /run/nginx /run/mysqld
+mkdir -p /run/php /run/nginx /run/mysqld
+chmod 700 /run/mysqld
+chown mysql:root /run/mysqld
+if [[ ! -f "/home/tor/tor/torrc" ]]
+then
+	echo "Copying default Tor config file"
+	mkdir -p /home/tor/tor
+    	cp /usr/local/tor/tor/torrc /home/tor/tor/torrc
+else
+	echo "Tor config is fine"
+fi
+if [[ ! -f "/home/tor/tor/torsocks.conf" ]]
+then
+	echo "Copying default TorSocks config file"
+    	mkdir -p /home/tor/tor
+    	cp /usr/local/tor/tor/torsocks.conf /home/tor/tor/torsocks.conf
+else
+	echo "TorSocks config is fine"
+fi
+if [[ ! -d "/home/tor/hidden-services" ]]
+then
+	echo "Copying default Hidden-Services folder"
+    	cp -r /usr/local/tor/hidden-services /home/tor/
+fi
+if [[ ! -d "/home/tor/nginx" ]]
+then
+	echo "Copying default NGINX folder"
+    	cp -r /usr/local/tor/nginx /home/tor/
+fi
+if [[ ! -d "/home/tor/php" ]]
+then
+	echo "Copying default PHP folder"
+    	cp -r /usr/local/tor/php /home/tor/
+fi
+if [[ ! -f "/home/tor/mariadb/my.cnf" ]]
+then
+	echo "Copying default MariaDB config file"
+	mkdir -p /home/tor/mariadb
+    	cp /usr/local/tor/mariadb/my.cnf /home/tor/mariadb/my.cnf
+else
+	echo "MariaDB is fine"
+fi
+if [[ ! -f "/home/tor/supervisor/supervisord.conf" ]]
+then
+	echo "Copying default Supervisor config file"
+	mkdir -p /home/tor/supervisor
+    	cp -r /usr/local/tor/supervisor/supervisord.conf /home/tor/supervisor/supervisord.conf
+else
+	echo "Supervisor config is present"
+fi
+if [[ ! -f "/help/supervisor_secure" ]]
+then
+	echo "Creating Supervisor secrets"
+	/bin/bash /help/supervisor_secrets.sh
+else
+	echo "Supervisor is already secured"
+fi
+if [[ ! -d "/home/tor/www" ]]
+then
+	echo "Copying default WWW folder"
+	cp -r /usr/local/tor/www /home/tor/
+fi
+if [[ ! -f "/home/tor/.nyx/config" ]]
+then
+	echo "Copying default NYX config file"
+	mkdir -p /home/tor/.nyx
+    	cp /usr/local/tor/nyx/config /home/tor/.nyx/config
+else
+	echo "NYX config is fine"
+fi
+if [[ ! -d "/home/tor/logs" ]]
+then
+	echo "Creating default LOGS folder"
+    	mkdir -p /home/tor/logs
+fi
+if [[ ! -f "/home/tor/.bashrc" ]]
+then
+	echo "Copying Default/Custom .bashrc"
+    cp /help/bashrc /home/tor/.bashrc
+	rm /root/.bashrc
+	cp /help/bashrc /root/.bashrc
+fi
+if [[ ! -f "/home/tor/vanguards/vanguards.py" ]] && [[ ! -d "/home/tor/vanguards/vanguards" ]]
+then
+	echo "Fetching latest version of Vanguards"
+    	wget -qO vanguards.zip https://github.com/mikeperry-tor/vanguards/archive/refs/heads/master.zip
+	unzip -qqo vanguards.zip
+	cp -r vanguards-master/src /home/tor/vanguards
+	rm -rf vanguards-master vanguards.zip
+	chmod +x /home/tor/vanguards/vanguards.py /home/tor/vanguards/vanguards/*.py
+else
+	echo "Vanguards is fine"
+	echo "To update Vanguards, simply delete Vanguards folder and restart Container"
+fi
+if [[ ! -f "/home/tor/vanguards/vanguards.conf" ]]
+then
+	echo "Copying default Vanguards config file"
+    	cp -r /usr/local/tor/vanguards/vanguards.conf /home/tor/vanguards/vanguards.conf
+fi
+if [[ ! -f "/help/mariadb_secure_install_done" ]]
+then
+	echo "Going to run mysql_secure_installation for MariaDB after server start"
+	/bin/bash /help/mariadb_secure_install.sh &
+	echo "Your MariaDB root password is at (/home/tor/mariadb/mariadb_root_password.txt)"
+else
+	echo "MariaDB is already Secured"
+	[ ! -f "/home/tor/mariadb/mariadb_root_password.txt" ] || echo "Your MariaDB root password is at (/home/tor/mariadb/mariadb_root_password.txt)"
+fi
+
+echo "Copying user php.ini to system PHP folder"
+cp /home/tor/php/php.ini /etc/php/8.0/fpm/php.ini
+echo "Copying proper resolv.conf"
+cp /help/resolv.conf /etc/resolv.conf
+echo "Fixing permissions"
+echo 0 > /help/HealthCount
+chmod 777 /help/HealthCount
+/bin/bash /help/fix_permissions.sh &
+
+echo ""
+echo "Now, Starting Supervisor for all services"
+echo ""
+
+exec /usr/local/bin/python3 /usr/local/bin/supervisord -c /etc/supervisor/supervisord.conf
