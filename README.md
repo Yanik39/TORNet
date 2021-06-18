@@ -1,10 +1,10 @@
-### TORNet: All in One Container for Hidden Services
+## All in One Container for Hidden Services
 
 [TORNet](https://github.com/Yanik39/TORNet) is all in one system to work as [hidden-service](https://www.linuxjournal.com/content/tor-hidden-services). TORNet has all necessary applications such as NGINX, PHP-FPM, MariaDB to host your hidden service. 
 And also to secure and optimize [Tor](https://2019.www.torproject.org/about/overview.html.en) connection, latest version of Vanguards is also installed along side with Tor monitoring software NYX. Also dnsmasq is handling all DNS queries over Tor connection. You may get the images from [Docker Hub](https://hub.docker.com/r/yanik39/tornet) or [GitHub](https://github.com/Yanik39/TORNet) / [GitHub Packages](https://github.com/Yanik39?tab=packages&repo_name=TORNet).
 
 
-#### Notes
+### Notes
   * It's wise to use separate Docker Network for TORNet.
     * `docker network create PrivateNet`
   
@@ -17,7 +17,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
   * Please delete or rename the `phpinfo.php` file at `/home/tor/www/host_1/public_html` Which is there to check everything is working.
   * It's better to use Nyx as tor user (`su tor`). To avoid warnings about being root and to use configuration file which is located at tor home folder.
 
-#### Deploy
+### Deploy
 
   ```bash
   docker network create PrivateNet
@@ -33,7 +33,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
     yanik39/tornet:latest
   ```
   
-#### Supervisor
+### Supervisor
   * Supervisor is controlling all services.
   * You may control Supervisor with SupervisorCTL
     * **Usage is possible only with root user.**
@@ -48,7 +48,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
       * `docker exec -it TORNet supervisorctl reload`
       * `docker exec -it TORNet supervisorctl restart TOR` ..etc
 
-#### Logging
+### Logging
   * Logging is disabled by default except Tor itself while Tor and Vanguards already hides/scrambles sensitive data from Tor logs. So its safe to remain on. If you may want also turn it off, edit `torrc` config file at the Tor home folder.
   * There is a useful script to manage logging for managed services (`nginx`, `php-fpm`, `mysql/mariadb`, `vanguards`, `supervisor`). 
     * **Usage is possible only with root user.**
@@ -66,12 +66,12 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
     * `torlog enable`
     * `docker exec -it TORNET torlog enable`
 
-#### Bash Terminal Aliases
+### Bash Terminal Aliases
   * `hs` to get domain names hosted at your TORNet.
   * `ns` to see listening sockets and ports.
   * `hc` to manually trigger HealthCheck.
 
-#### Some Features
+### Some Features
   * `tor <-> nginx` connection is established with socket. Nginx is not listening any IP or port.
   * `nginx <-> php8.0-fpm` connection is established with socket.
   * `nginx` is hardened, so exposing nothing.
