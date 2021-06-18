@@ -39,19 +39,19 @@ chmod 700 /var/run/mysqld
 chown mysql:root /var/run/mysqld
 if [[ ! -f "/home/tor/tor/torrc" ]]
 then
-	echo "Copying default Tor config file"
+	echo "Copying default Tor configuration file"
 	mkdir -p /home/tor/tor
     	cp /usr/local/tor/tor/torrc /home/tor/tor/torrc
 else
-	echo "Tor config is fine"
+	echo "Tor configuration is fine"
 fi
 if [[ ! -f "/home/tor/tor/torsocks.conf" ]]
 then
-	echo "Copying default TorSocks config file"
+	echo "Copying default TorSocks configuration file"
     	mkdir -p /home/tor/tor
     	cp /usr/local/tor/tor/torsocks.conf /home/tor/tor/torsocks.conf
 else
-	echo "TorSocks config is fine"
+	echo "TorSocks configuration is fine"
 fi
 if [[ ! -d "/home/tor/hidden-services" ]]
 then
@@ -70,19 +70,29 @@ then
 fi
 if [[ ! -f "/home/tor/mariadb/my.cnf" ]]
 then
-	echo "Copying default MariaDB config file"
+	echo "Copying default MariaDB configuration file"
 	mkdir -p /home/tor/mariadb
     	cp /usr/local/tor/mariadb/my.cnf /home/tor/mariadb/my.cnf
 else
 	echo "MariaDB is fine"
 fi
-if [[ ! -f "/home/tor/supervisor/supervisord.conf" ]]
+if [[ ! -f "/home/tor/supervisor/supervisord_NoLog.conf" ]]
 then
-	echo "Copying default Supervisor config file"
+	echo "Copying default Supervisor NoLog configuration file"
 	mkdir -p /home/tor/supervisor
-    	cp -r /usr/local/tor/supervisor/supervisord.conf /home/tor/supervisor/supervisord.conf
+    cp -r /usr/local/tor/supervisor/supervisord_NoLog.conf /home/tor/supervisor/supervisord_NoLog.conf
+		
 else
-	echo "Supervisor config is present"
+	echo "Supervisor NoLog configuration is present"
+fi
+if [[ ! -f "/home/tor/supervisor/supervisord_WithLog.conf" ]]
+then
+	echo "Copying default Supervisor WithLog configuration file"
+	mkdir -p /home/tor/supervisor
+	cp -r /usr/local/tor/supervisor/supervisord_WithLog.conf /home/tor/supervisor/supervisord_WithLog.conf
+		
+else
+	echo "Supervisor WithLog configuration is present"
 fi
 if [[ ! -f "/help/supervisor_secure" ]]
 then
@@ -98,11 +108,11 @@ then
 fi
 if [[ ! -f "/home/tor/.nyx/config" ]]
 then
-	echo "Copying default NYX config file"
+	echo "Copying default NYX configuration file"
 	mkdir -p /home/tor/.nyx
     	cp /usr/local/tor/nyx/config /home/tor/.nyx/config
 else
-	echo "NYX config is fine"
+	echo "NYX configuration is fine"
 fi
 if [[ ! -d "/home/tor/logs" ]]
 then
@@ -130,7 +140,7 @@ else
 fi
 if [[ ! -f "/home/tor/vanguards/vanguards.conf" ]]
 then
-	echo "Copying default Vanguards config file"
+	echo "Copying default Vanguards configuration file"
     	cp -r /usr/local/tor/vanguards/vanguards.conf /home/tor/vanguards/vanguards.conf
 fi
 if [[ ! -f "/help/mariadb_secure_install_done" ]]
