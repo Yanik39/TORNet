@@ -1,7 +1,8 @@
 ### TORNet: All in One Container for Hidden Services
 
 TORNet is all in one system to work as hidden-service. TORNet has all necessary applications such as NGINX, PHP-FPM, MariaDB to host your hidden service. 
-And also to secure and optimize Tor connection, latest version of Vanguards is also installed along side with Tor monitoring software NYX. Also dnsmasq is handling all DNS queries over Tor connection.
+And also to secure and optimize Tor connection, latest version of Vanguards is also installed along side with Tor monitoring software NYX. Also dnsmasq is handling all DNS queries over Tor connection. You may get the images from [Docker Hub](https://hub.docker.com/r/yanik39/tornet) or [GitHub](https://github.com/Yanik39/TORNet) / [GitHub Packages](https://github.com/Yanik39?tab=packages&repo_name=TORNet).
+
 
 #### Notes
   * It's wise to use separate Docker Network for TORNet.
@@ -58,6 +59,6 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
  * `supervisor <-> supervisorctl` connection is secured with auto generated random password.
  * `MariaDB/MySQL` mysql_secure_install is done after first install. Any you get the auto generated random password at tor home folder.
  * If you messed with configurations/files/folders etc. just delete file/folder to get default ones after restart of the container.
- * Vanguards is hardening tor connections. I suggest to check it out.
+ * [Vanguards](https://github.com/mikeperry-tor/vanguards) is hardening tor connections. I suggest also check [Tor Blog](https://blog.torproject.org/announcing-vanguards-add-onion-services) post.
  * 5-Eye countries are blocked as any kind of nodes (exit or middle). There is some warnings about this at tor logs, but safe to ignore.
  * Nyx is ready to run to check tor connection with nice GUI. With proper settings at tor home folder.
