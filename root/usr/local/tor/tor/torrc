@@ -5,6 +5,9 @@ SocksPort 127.0.0.1:9050 IsolateDestAddr IsolateDestPort
 ControlPort 127.0.0.1:9051
 CookieAuthentication 1
 
+SOCKSPolicy accept 127.0.0.1
+SOCKSPolicy reject *
+
 DNSPort 9053
 AutomapHostsOnResolve 1
 AutomapHostsSuffixes .exit,.onion
