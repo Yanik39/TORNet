@@ -20,6 +20,14 @@ function enableall()
 	sed -i "s/logfile = .*/logfile = \/home\/tor\/supervisor\/supervisord.log/g" /etc/supervisor/supervisord.conf
         sed -i "s/childlogdir = .*/childlogdir = \/home\/tor\/supervisor/g" /etc/supervisor/supervisord.conf
         sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_WithLog.conf/g" /etc/supervisor/supervisord.conf
+	sed -i "s/access_log .*/access_log \/home\/tor\/logs\/nginx_access.log;/g" /home/tor/nginx/conf.d/log-main.conf
+        sed -i "s/error_log .*/error_log \/home\/tor\/logs\/nginx_error.log;/g" /home/tor/nginx/conf.d/log-main.conf
+	for f in /home/tor/nginx/sites-enabled/*.conf
+	do
+   		host=$(cat $f | grep root | cut -d "/" -f5)
+  		sed -i "s/access_log .*/access_log \/home\/tor\/logs\/${host}_access.log;/g" $f
+   		sed -i "s/error_log .*/error_log \/home\/tor\/logs\/${host}_error.log;/g" $f
+	done
         restart
 }
 
@@ -28,6 +36,14 @@ function disableall()
 	sed -i "s/logfile = .*/logfile = \/dev\/null/g" /etc/supervisor/supervisord.conf
 	sed -i "s/childlogdir = .*/childlogdir = \/tmp/g" /etc/supervisor/supervisord.conf
 	sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_NoLog.conf/g" /etc/supervisor/supervisord.conf
+	sed -i "s/access_log .*/access_log off;/g" /home/tor/nginx/conf.d/log-main.conf
+	sed -i "s/error_log .*/error_log off;/g" /home/tor/nginx/conf.d/log-main.conf
+	for f in /home/tor/nginx/sites-enabled/*.conf
+	do
+   		host=$(cat $f | grep root | cut -d "/" -f5)
+   		sed -i 's/access_log .*/access_log off;/g' $f
+   		sed -i 's/error_log .*/error_log off;/g' $f
+	done
 	restart
 	rm -rf /home/tor/supervisor/*.log /home/tor/logs/*.log /tmp/*.log
 }
