@@ -1,7 +1,7 @@
 ### TORNet: All in One Container for Hidden Services
 
-TORNet is all in one system to work as hidden-service. TORNet has all necessary applications such as NGINX, PHP-FPM, MariaDB to host your hidden service. 
-And also to secure and optimize Tor connection, latest version of Vanguards is also installed along side with Tor monitoring software NYX. Also dnsmasq is handling all DNS queries over Tor connection. You may get the images from [Docker Hub](https://hub.docker.com/r/yanik39/tornet) or [GitHub](https://github.com/Yanik39/TORNet) / [GitHub Packages](https://github.com/Yanik39?tab=packages&repo_name=TORNet).
+[TORNet](https://github.com/Yanik39/TORNet) is all in one system to work as [hidden-service](https://www.linuxjournal.com/content/tor-hidden-services). TORNet has all necessary applications such as NGINX, PHP-FPM, MariaDB to host your hidden service. 
+And also to secure and optimize [Tor](https://2019.www.torproject.org/about/overview.html.en) connection, latest version of Vanguards is also installed along side with Tor monitoring software NYX. Also dnsmasq is handling all DNS queries over Tor connection. You may get the images from [Docker Hub](https://hub.docker.com/r/yanik39/tornet) or [GitHub](https://github.com/Yanik39/TORNet) / [GitHub Packages](https://github.com/Yanik39?tab=packages&repo_name=TORNet).
 
 
 #### Notes
