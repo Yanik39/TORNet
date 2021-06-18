@@ -15,9 +15,10 @@ echo ""
 
 if [[ ! -f "/help/first_run_done" ]]
 then
+	chmod +x /usr/local/bin/log
 	echo "Checking Debian updates before First Run"
 	echo "Checking Python PIP updates before First Run"
-    	/bin/bash /help/check_updates.sh
+    /bin/bash /help/check_updates.sh
 	echo "System is now UpToDate"
 	echo "Checking UID and GID"
 	[ "$uid" -eq "$UID" ] || usermod -u $UID tor
