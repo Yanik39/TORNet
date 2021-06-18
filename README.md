@@ -50,7 +50,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
 
 ### Logging
   * Logging is disabled by default except Tor itself while Tor and Vanguards already hides/scrambles sensitive data from Tor logs. So its safe to remain on. If you may want also turn it off, edit `torrc` config file at the Tor home folder.
-  * There is a useful script to manage logging for managed services (`nginx`, `php-fpm`, `mysql/mariadb`, `vanguards`, `supervisor`). 
+  * There is a useful script to manage logging for all managed services (`nginx`, `php-fpm`, `mysql/mariadb` etc.). 
     * **Usage is possible only with root user.**
     * From the container;    
       * `torlog status`
