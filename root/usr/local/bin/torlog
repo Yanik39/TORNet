@@ -12,16 +12,16 @@ fi
 function restart()
 {
 	supervisorctl reread
-        supervisorctl reload
+	supervisorctl reload
 }
 
 function enableall()
 {
 	sed -i "s/logfile = .*/logfile = \/home\/tor\/supervisor\/supervisord.log/g" /etc/supervisor/supervisord.conf
-        sed -i "s/childlogdir = .*/childlogdir = \/home\/tor\/supervisor/g" /etc/supervisor/supervisord.conf
-        sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_WithLog.conf/g" /etc/supervisor/supervisord.conf
+	sed -i "s/childlogdir = .*/childlogdir = \/home\/tor\/supervisor/g" /etc/supervisor/supervisord.conf
+	sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_WithLog.conf/g" /etc/supervisor/supervisord.conf
 	sed -i "s/access_log .*/access_log \/home\/tor\/logs\/nginx_access.log;/g" /home/tor/nginx/conf.d/log-main.conf
-        sed -i "s/error_log .*/error_log \/home\/tor\/logs\/nginx_error.log;/g" /home/tor/nginx/conf.d/log-main.conf
+	sed -i "s/error_log .*/error_log \/home\/tor\/logs\/nginx_error.log;/g" /home/tor/nginx/conf.d/log-main.conf
 	for f in /home/tor/nginx/sites-enabled/*.conf
 	do
    		host=$(cat $f | grep root | cut -d "/" -f5)
@@ -35,8 +35,7 @@ function enableall()
 	do
   		sed -i "s/catch_workers_output = .*/catch_workers_output = yes/g" $f
 	done
-	
-        restart
+	restart
 }
 
 function disableall()

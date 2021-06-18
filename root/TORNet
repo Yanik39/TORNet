@@ -18,7 +18,7 @@ then
 	chmod +x /usr/local/bin/tornet-log
 	echo "Checking Debian updates before First Run"
 	echo "Checking Python PIP updates before First Run"
-    /bin/bash /help/check_updates.sh
+	/bin/bash /help/check_updates.sh
 	echo "System is now UpToDate"
 	echo "Checking UID and GID"
 	[ "$uid" -eq "$UID" ] || usermod -u $UID tor
@@ -42,38 +42,38 @@ if [[ ! -f "/home/tor/tor/torrc" ]]
 then
 	echo "Copying default Tor configuration file"
 	mkdir -p /home/tor/tor
-    	cp /usr/local/tor/tor/torrc /home/tor/tor/torrc
+	cp /usr/local/tor/tor/torrc /home/tor/tor/torrc
 else
 	echo "Tor configuration is fine"
 fi
 if [[ ! -f "/home/tor/tor/torsocks.conf" ]]
 then
 	echo "Copying default TorSocks configuration file"
-    	mkdir -p /home/tor/tor
-    	cp /usr/local/tor/tor/torsocks.conf /home/tor/tor/torsocks.conf
+	mkdir -p /home/tor/tor
+	cp /usr/local/tor/tor/torsocks.conf /home/tor/tor/torsocks.conf
 else
 	echo "TorSocks configuration is fine"
 fi
 if [[ ! -d "/home/tor/hidden-services" ]]
 then
 	echo "Copying default Hidden-Services folder"
-    	mkdir -p /home/tor/hidden-services
+	mkdir -p /home/tor/hidden-services
 fi
 if [[ ! -d "/home/tor/nginx" ]]
 then
 	echo "Copying default NGINX folder"
-    	cp -r /usr/local/tor/nginx /home/tor/
+	cp -r /usr/local/tor/nginx /home/tor/
 fi
 if [[ ! -d "/home/tor/php" ]]
 then
 	echo "Copying default PHP folder"
-    	cp -r /usr/local/tor/php /home/tor/
+	cp -r /usr/local/tor/php /home/tor/
 fi
 if [[ ! -f "/home/tor/mariadb/my.cnf" ]]
 then
 	echo "Copying default MariaDB configuration file"
 	mkdir -p /home/tor/mariadb
-    	cp /usr/local/tor/mariadb/my.cnf /home/tor/mariadb/my.cnf
+	cp /usr/local/tor/mariadb/my.cnf /home/tor/mariadb/my.cnf
 else
 	echo "MariaDB is fine"
 fi
@@ -81,8 +81,7 @@ if [[ ! -f "/home/tor/supervisor/supervisord_NoLog.conf" ]]
 then
 	echo "Copying default Supervisor NoLog configuration file"
 	mkdir -p /home/tor/supervisor
-    cp -r /usr/local/tor/supervisor/supervisord_NoLog.conf /home/tor/supervisor/supervisord_NoLog.conf
-		
+	cp -r /usr/local/tor/supervisor/supervisord_NoLog.conf /home/tor/supervisor/supervisord_NoLog.conf
 else
 	echo "Supervisor NoLog configuration is present"
 fi
@@ -91,7 +90,6 @@ then
 	echo "Copying default Supervisor WithLog configuration file"
 	mkdir -p /home/tor/supervisor
 	cp -r /usr/local/tor/supervisor/supervisord_WithLog.conf /home/tor/supervisor/supervisord_WithLog.conf
-		
 else
 	echo "Supervisor WithLog configuration is present"
 fi
@@ -111,7 +109,7 @@ if [[ ! -f "/home/tor/.nyx/config" ]]
 then
 	echo "Copying default NYX configuration file"
 	mkdir -p /home/tor/.nyx
-    	cp /usr/local/tor/nyx/config /home/tor/.nyx/config
+	cp /usr/local/tor/nyx/config /home/tor/.nyx/config
 else
 	echo "NYX configuration is fine"
 fi
@@ -123,14 +121,14 @@ fi
 if [[ ! -f "/home/tor/.bashrc" ]]
 then
 	echo "Copying Default/Custom .bashrc"
-    cp /help/bashrc /home/tor/.bashrc
+	cp /help/bashrc /home/tor/.bashrc
 	rm /root/.bashrc
 	cp /help/bashrc /root/.bashrc
 fi
 if [[ ! -f "/home/tor/vanguards/vanguards.py" ]] && [[ ! -d "/home/tor/vanguards/vanguards" ]]
 then
 	echo "Fetching latest version of Vanguards"
-    	wget -qO vanguards.zip https://github.com/mikeperry-tor/vanguards/archive/refs/heads/master.zip
+	wget -qO vanguards.zip https://github.com/mikeperry-tor/vanguards/archive/refs/heads/master.zip
 	unzip -qqo vanguards.zip
 	cp -r vanguards-master/src /home/tor/vanguards
 	rm -rf vanguards-master vanguards.zip
@@ -142,7 +140,7 @@ fi
 if [[ ! -f "/home/tor/vanguards/vanguards.conf" ]]
 then
 	echo "Copying default Vanguards configuration file"
-    	cp -r /usr/local/tor/vanguards/vanguards.conf /home/tor/vanguards/vanguards.conf
+	cp -r /usr/local/tor/vanguards/vanguards.conf /home/tor/vanguards/vanguards.conf
 fi
 if [[ ! -f "/help/mariadb_secure_install_done" ]]
 then
