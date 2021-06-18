@@ -45,7 +45,7 @@ function disableall()
 	sed -i "s/childlogdir = .*/childlogdir = \/tmp/g" /etc/supervisor/supervisord.conf
 	sed -i "s/files = .*/files = \/home\/tor\/supervisor\/supervisord_NoLog.conf/g" /etc/supervisor/supervisord.conf
 	sed -i "s/access_log .*/access_log off;/g" /home/tor/nginx/conf.d/log-main.conf
-	sed -i "s/error_log .*/error_log \/dev\/null crit;/g" /home/tor/nginx/conf.d/log-main.conf
+	sed -i "s/error_log .*/error_log off;/g" /home/tor/nginx/conf.d/log-main.conf
 	for f in /home/tor/nginx/sites-enabled/*.conf
 	do
    		host=$(cat $f | grep root | cut -d "/" -f5)
