@@ -59,6 +59,6 @@ And also to secure and optimize Tor connection, latest version of Vanguards is a
  * `supervisor <-> supervisorctl` connection is secured with auto generated random password.
  * `MariaDB/MySQL` mysql_secure_install is done after first install. Any you get the auto generated random password at tor home folder.
  * If you messed with configurations/files/folders etc. just delete file/folder to get default ones after restart of the container.
- * [Vanguards](https://github.com/mikeperry-tor/vanguards) is hardening tor connections. I suggest also check [Tor Blog](https://blog.torproject.org/announcing-vanguards-add-onion-services) post.
+ * [Vanguards](https://github.com/mikeperry-tor/vanguards) is hardening tor connections. I suggest also checking related [Tor Blog](https://blog.torproject.org/announcing-vanguards-add-onion-services) post.
  * 5-Eye countries are blocked as any kind of nodes (exit or middle). There is some warnings about this at tor logs, but safe to ignore.
  * Nyx is ready to run to check tor connection with nice GUI. With proper settings at tor home folder.
