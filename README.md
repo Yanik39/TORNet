@@ -64,7 +64,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
   
   * System starts with NoLog policy, if you like to debug the system just enable logging by running one of the following commands; 
     * `torlog enable`
-    * `docker exec -it TORNET torlog enable`
+    * `docker exec -it TORNet torlog enable`
 
 ### Bash Terminal Aliases
   * `hs` to get domain names hosted at your TORNet.
