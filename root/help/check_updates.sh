@@ -14,4 +14,8 @@ rm -rf /usr/share/doc/
 rm -rf /usr/share/man/
 rm -rf /usr/share/locale/
 rm -rf /root/.cache
+rm -rf /var/log/*
+mkdir -p /var/log/nginx
+mkdir -p /var/log/mysql
+chown mysql:root /var/log/mysql
 touch /help/first_run_done

@@ -60,7 +60,7 @@ function disableall()
   		sed -i "s/catch_workers_output = .*/catch_workers_output = no/g" $f
 	done
 	restart
-	rm -rf /home/tor/supervisor/*.log /home/tor/logs/*.log /tmp/*.log
+	rm -rf /home/tor/supervisor/*.log /home/tor/logs/*.log
 }
 
 function enable()
