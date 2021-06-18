@@ -20,6 +20,8 @@ FetchDirInfoExtraEarly 1
 FetchUselessDescriptors 1
 
 Log notice file /home/tor/logs/tor.log
+# Comment above line and uncomment below line to torn Tor logging off.
+#Log notice file /dev/null
 
 HiddenServiceDir /home/tor/hidden-services/service_1
 HiddenServicePort 80 unix:/var/run/nginx/host_1.sock

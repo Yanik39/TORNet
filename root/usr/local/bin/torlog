@@ -2,6 +2,11 @@
 
 state="disabled"
 
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
+
 if [[ ! -f /help/log_state ]]
 then
 	echo $state > /help/log_state
@@ -25,8 +30,8 @@ function enableall()
 	for f in /home/tor/nginx/sites-enabled/*.conf
 	do
    		host=$(cat $f | grep root | cut -d "/" -f5)
-  		sed -i "s/^access_log .*/access_log \/home\/tor\/logs\/${host}_access.log;/g" $f
-   		sed -i "s/^error_log .*/error_log \/home\/tor\/logs\/${host}_error.log;/g" $f
+  		sed -i "s/access_log .*/access_log \/home\/tor\/logs\/${host}_access.log;/g" $f
+   		sed -i "s/error_log .*/error_log \/home\/tor\/logs\/${host}_error.log;/g" $f
 	done
 	sed -i 's/^log_errors = .*/log_errors = On/g' /home/tor/php/php.ini
 	sed -i 's/^log_errors = .*/log_errors = On/g' /etc/php/8.0/fpm/php.ini
@@ -49,8 +54,8 @@ function disableall()
 	for f in /home/tor/nginx/sites-enabled/*.conf
 	do
    		host=$(cat $f | grep root | cut -d "/" -f5)
-   		sed -i 's/^access_log .*/access_log off;/g' $f
-   		sed -i 's/^error_log .*/error_log off;/g' $f
+   		sed -i 's/access_log .*/access_log off;/g' $f
+   		sed -i 's/error_log .*/error_log off;/g' $f
 	done
 	sed -i 's/^log_errors = .*/log_errors = Off/g' /home/tor/php/php.ini
 	sed -i 's/^log_errors = .*/log_errors = Off/g' /etc/php/8.0/fpm/php.ini
@@ -67,7 +72,8 @@ function disableall()
 function enable()
 {
 	state="enabled"
-	echo $state
+	echo "Logging is enabled."
+	echo "Restarting all services."
 	echo $state > /help/log_state
 	enableall
 }
@@ -75,14 +81,15 @@ function enable()
 function disable()
 {
 	state="disabled"
-	echo $state
+	echo "Logging is disabled."
+	echo "Restarting all services."
 	echo $state > /help/log_state
 	disableall
 }
 
 if [[ "$1" == "status" ]]
 then
-	echo $state
+	echo "Logging is " $state
 elif [[ "$1" == "enable" ]]
 then
 	enable
