@@ -1,7 +1,7 @@
 ## All in One Container for Hidden Services
 
 [TORNet](https://github.com/Yanik39/TORNet) is all in one system to work as [hidden-service](https://www.linuxjournal.com/content/tor-hidden-services). TORNet has all necessary applications such as NGINX, PHP-FPM, MariaDB to host your hidden service. 
-And also to secure and optimize [Tor](https://2019.www.torproject.org/about/overview.html.en) connection, latest version of Vanguards is also installed along side with Tor monitoring software NYX. Also dnsmasq is handling all DNS queries over Tor connection. You may get the images from [Docker Hub](https://hub.docker.com/r/yanik39/tornet) or [GitHub](https://github.com/Yanik39/TORNet) / [GitHub Packages](https://github.com/Yanik39?tab=packages&repo_name=TORNet).
+And also to secure and optimize [Tor](https://2019.www.torproject.org/about/overview.html.en) connection, latest version of Vanguards is also installed along side with Tor monitoring software [NYX](https://nyx.torproject.org/). Also dnsmasq is handling all DNS queries over Tor connection. You may get the images from [Docker Hub](https://hub.docker.com/r/yanik39/tornet) or [GitHub](https://github.com/Yanik39/TORNet) / [GitHub Packages](https://github.com/Yanik39?tab=packages&repo_name=TORNet).
 
 
 ### Notes
@@ -14,8 +14,12 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
   
   * It's better not to pass your Timezone to Container, default is UTC.
   * You will get your random MariaDB/MySQL password at your `/home/tor/mariadb` folder.
-  * Please delete or rename the `phpinfo.php` file at `/home/tor/www/host_1/public_html` Which is there to check everything is working.
-  * It's better to use Nyx as tor user (`su tor`). To avoid warnings about being root and to use configuration file which is located at tor home folder.
+  * Please delete/rename the `phpinfo.php` file at `/home/tor/www/host_1/public_html` after checking everything is working fine.
+  * It's better to use [Nyx](https://nyx.torproject.org/) as user `tor` to avoid warnings about being root and to use proper configuration file.
+    * From the container;
+      * As user tor, run `nyx`
+    * From the host system;
+      * `docker exec -u tor -it TORNet nyx`
 
 ### Deploy
 
@@ -57,10 +61,10 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
       * `torlog disable`
       * `torlog enable`
      
-     * From the host system;
-       * `docker exec -it TORNet torlog status`
-       * `docker exec -it TORNet torlog enable`
-       * `docker exec -it TORNet torlog disable`
+    * From the host system;
+      * `docker exec -it TORNet torlog status`
+      * `docker exec -it TORNet torlog enable`
+      * `docker exec -it TORNet torlog disable`
   
   * System starts with NoLog policy, if you like to debug the system just enable logging by running one of the following commands; 
     * `torlog enable`
@@ -76,10 +80,10 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
     * Checks Tor Projects, [Tor Check](https://check.torproject.org/) page (Which says 'Congratulations' if the connection is over Tor)
     * Checks [Debian Onion](https://onion.debian.org/) V3 adress `5ekxbftvqg26oir5wle3p27ax3wksbxcecnm6oemju7bjra2pn26s3qd.onion`
     * Also checks systems own hidden service address.
-  * If there is many(8) consequent errors occurs, Tor is going to be restarted.
+  * If there is many(8) consequent error occurs, Tor is going to be restarted by the HealthCheck script.
 
 ### DNS
-  * `dnsmasq` handles all DNS requests and send them over tor connection.
+  * `dnsmasq` handles all DNS requests and send them over Tor connection.
 
 ### Some Features
   * `tor <-> nginx` connection is established with socket. Nginx is not listening any IP or port.
