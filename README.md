@@ -14,7 +14,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
   
   * It's better not to pass your Timezone to Container, default is UTC.
   * You will get your random MariaDB/MySQL password at `/root` folder.
-  * Please delete/rename the `phpinfo.php` file at `/www/host_1/public_html` after checking everything is working fine.
+  * Please delete/rename the `phpinfo.php` file at `public_html` after checking everything is working fine.
   * It's better to use [Nyx](https://nyx.torproject.org/) as user `tor` to avoid warnings about being root and to use proper configuration file.
     * From the container;
       * As user tor, run `nyx`
