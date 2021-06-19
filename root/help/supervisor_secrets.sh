@@ -7,3 +7,4 @@ cp /help/supervisord.conf /etc/supervisor/supervisord.conf
 sed -i "s/secretuser/$secretuser/g" /etc/supervisor/supervisord.conf
 sed -i "s/secretpass/$secretpass/g" /etc/supervisor/supervisord.conf
 touch /help/supervisor_secure
+chmod 400 /help/supervisor_secure

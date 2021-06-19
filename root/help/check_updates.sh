@@ -19,3 +19,4 @@ mkdir -p /var/log/nginx
 mkdir -p /var/log/mysql
 chown mysql:root /var/log/mysql
 touch /help/first_run_done
+chmod 400 /help/first_run_done

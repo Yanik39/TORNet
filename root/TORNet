@@ -15,7 +15,6 @@ echo ""
 
 if [[ ! -f "/help/first_run_done" ]]
 then
-	chmod +x /usr/local/bin/torlog
 	echo "Checking Debian updates before First Run"
 	echo "Checking Python PIP updates before First Run"
 	/bin/bash /help/check_updates.sh
@@ -121,9 +120,9 @@ fi
 if [[ ! -f "/home/tor/.bashrc" ]]
 then
 	echo "Copying Default/Custom .bashrc"
-	cp /help/bashrc /home/tor/.bashrc
-	rm /root/.bashrc
+	rm -rf /root/.bashrc
 	cp /help/bashrc /root/.bashrc
+	cp /help/bashrc /home/tor/.bashrc
 fi
 if [[ ! -f "/home/tor/vanguards/vanguards.py" ]] && [[ ! -d "/home/tor/vanguards/vanguards" ]]
 then
@@ -146,10 +145,10 @@ if [[ ! -f "/help/mariadb_secure_install_done" ]]
 then
 	echo "Going to run mysql_secure_installation for MariaDB after server start"
 	/bin/bash /help/mariadb_secure_install.sh &
-	echo "Your MariaDB root password is at (/home/tor/mariadb/mariadb_root_password.txt)"
+	echo "Your MariaDB root password is at (/root/mariadb_root_password.txt)"
 else
 	echo "MariaDB is already Secured"
-	[ ! -f "/home/tor/mariadb/mariadb_root_password.txt" ] || echo "Your MariaDB root password is at (/home/tor/mariadb/mariadb_root_password.txt)"
+	[ ! -f "/root/mariadb_root_password.txt" ] || echo "Your MariaDB root password is at (/root/mariadb_root_password.txt)"
 fi
 
 echo "Copying user php.ini to system PHP folder"
@@ -157,8 +156,6 @@ cp /home/tor/php/php.ini /etc/php/8.0/fpm/php.ini
 echo "Copying proper resolv.conf"
 cp /help/resolv.conf /etc/resolv.conf
 echo "Fixing permissions"
-echo 0 > /help/HealthCount
-chmod 777 /help/HealthCount
 /bin/bash /help/fix_permissions.sh &
 
 echo ""

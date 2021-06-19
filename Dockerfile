@@ -29,11 +29,17 @@ RUN cd /tmp \
 	&& /usr/local/bin/python3 -m pip install stem ipaddr nyx supervisor \
 	&& rm -rf /var/lib/apt/* /var/lib/cache/* /var/lib/log/* /tmp/* /var/tmp/* /var/log/* \
 		/usr/share/doc/ /usr/share/man/ /usr/share/locale/ /root/.cache /root/.gnupg \
-	&& chmod +x /TORNet /help/HealthCheck /help/*.sh /help/*.expect \
 	&& groupadd tor && useradd -ms /bin/bash -g tor tor \
-	&& chown -R tor:tor /home/tor /usr/local/tor
+	&& chown -R tor:tor /home/tor /usr/local/tor \
+	&& chmod 600 /help/supervisord.conf \
+	&& chmod 644 /help/bashrc /help/resolve.conf help/dnsmasq.conf \
+	&& chmod 700 /TORNet /help/mariadb* /help/check_updates.sh \
+		/help/fix_permissions.sh /help/supervisor_secrets.sh \
+		/usr/local/bin/torlog /usr/local/bin/tordb \
+	&& chmod 777 /help/Health*
+	
 
-HEALTHCHECK --interval=3m --timeout=30s --start-period=5m --retries=10 \
+HEALTHCHECK --interval=2m --timeout=39s --start-period=3m --retries=10 \
 	CMD ["/bin/bash","-c","/help/HealthCheck"]
 	
 ENTRYPOINT ["/TORNet"]

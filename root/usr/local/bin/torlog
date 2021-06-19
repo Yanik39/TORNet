@@ -2,14 +2,17 @@
 
 state="disabled"
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
+if [[ $EUID -ne 0 ]]
+then
+   echo "This script must be run as root"
+   echo "Exiting.."
    exit 1
 fi
 
 if [[ ! -f /help/log_state ]]
 then
 	echo $state > /help/log_state
+	chmod 400 /help/log_state
 else
 	state=$(cat /help/log_state)
 fi
@@ -75,7 +78,7 @@ function disableall()
 function enable()
 {
 	state="enabled"
-	echo "Logging is enabled."
+	echo "Logging will be enabled."
 	echo "Restarting all services."
 	echo $state > /help/log_state
 	enableall
@@ -84,7 +87,7 @@ function enable()
 function disable()
 {
 	state="disabled"
-	echo "Logging is disabled."
+	echo "Logging will be disabled."
 	echo "Restarting all services."
 	echo $state > /help/log_state
 	disableall
@@ -103,6 +106,6 @@ elif [[ "$1" == "" ]]
 then
 	disable
 else
-	echo "Unknow Command"
+	echo "Unknown Command"
 	echo "Options: status, enable, disable"
 fi
