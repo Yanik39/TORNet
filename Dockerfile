@@ -32,7 +32,7 @@ RUN cd /tmp \
 	&& groupadd tor && useradd -ms /bin/bash -g tor tor \
 	&& chown -R tor:tor /home/tor /usr/local/tor \
 	&& chmod 600 /help/supervisord.conf \
-	&& chmod 644 /help/bashrc /help/resolve.conf help/dnsmasq.conf \
+	&& chmod 644 /help/bashrc /help/resolv.conf /help/dnsmasq.conf \
 	&& chmod 700 /TORNet /help/mariadb* /help/check_updates.sh \
 		/help/fix_permissions.sh /help/supervisor_secrets.sh \
 		/usr/local/bin/torlog /usr/local/bin/tordb \
