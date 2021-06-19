@@ -42,6 +42,9 @@ function enableall()
 	done
 	sed -i 's/^#logfile/logfile/g' /home/tor/vanguards/vanguards.conf
 	restart
+	sleep 20
+	echo "Fixing permissions in 20 seconds."
+	chown -R tor:tor /home/tor/logs/*.log /home/tor/supervisor/*.log
 }
 
 function disableall()
@@ -66,7 +69,7 @@ function disableall()
 	done
 	sed -i 's/^logfile/#logfile/g' /home/tor/vanguards/vanguards.conf
 	restart
-	rm -rf /home/tor/supervisor/*.log /home/tor/logs/*.log
+	rm -rf /home/tor/supervisor/*.log /home/tor/logs/*.log /var/log/*.log
 }
 
 function enable()

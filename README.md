@@ -71,6 +71,16 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
   * `ns` to see listening sockets and ports.
   * `hc` to manually trigger HealthCheck.
 
+### HealthCheck
+  * System runs three checks to decide being healthy.
+    * Checks Tor Projects, [Tor Check](https://check.torproject.org/) page (Which says 'Congratulations' if the connection is over Tor)
+    * Checks [Debian Onion](https://onion.debian.org/) V3 adress `5ekxbftvqg26oir5wle3p27ax3wksbxcecnm6oemju7bjra2pn26s3qd.onion`
+    * Also checks systems own hidden service address.
+  * If there is many(8) consequent errors occurs, Tor is going to be restarted.
+
+### DNS
+  * `dnsmasq` handles all DNS requests and send them over tor connection.
+
 ### Some Features
   * `tor <-> nginx` connection is established with socket. Nginx is not listening any IP or port.
   * `nginx <-> php8.0-fpm` connection is established with socket.
