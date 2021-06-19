@@ -31,7 +31,7 @@ RUN cd /tmp \
 		/usr/share/doc/ /usr/share/man/ /usr/share/locale/ /root/.cache /root/.gnupg \
 	&& groupadd tor && useradd -ms /bin/bash -g tor tor \
 	&& chown -R tor:tor /home/tor /usr/local/tor \
-	&& chmod 600 /help/supervisord.conf \
+	&& chmod 600 /help/supervisord.conf /help/my.cnf \
 	&& chmod 644 /help/bashrc /help/resolv.conf /help/dnsmasq.conf \
 	&& chmod 700 /TORNet /help/mariadb* /help/check_updates.sh \
 		/help/fix_permissions.sh /help/supervisor_secrets.sh \

@@ -1,10 +1,11 @@
 name: Push_Docker DEV
 
 on:
+  schedule:
+    - cron:  '39 * * * *'
   push:
     branches:
       - 'main'
-
 jobs:
   docker:
     runs-on: ubuntu-latest
