@@ -13,7 +13,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
     * GID: `id -g`
   
   * It's better not to pass your Timezone to Container, default is UTC.
-  * You will get your random MariaDB/MySQL password at your `/home/tor/mariadb` folder.
+  * You will get your random MariaDB/MySQL password at `/root` folder.
   * Please delete/rename the `phpinfo.php` file at `/home/tor/www/host_1/public_html` after checking everything is working fine.
   * It's better to use [Nyx](https://nyx.torproject.org/) as user `tor` to avoid warnings about being root and to use proper configuration file.
     * From the container;
@@ -92,7 +92,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
   * `php` is hardened by disabling any settings exposes any info.
   * `php-fpm` clears all ENV variables.
   * `supervisor <-> supervisorctl` connection is secured with auto generated random password.
-  * `MariaDB/MySQL` mysql_secure_install is done after first install. Any you get the auto generated random password at tor home folder.
+  * `MariaDB/MySQL` mysql_secure_install is done after first install. Any you get the auto generated random password at `/root` folder.
   * If you messed with configurations/files/folders etc. just delete file/folder to get default ones after restart of the container.
   * [Vanguards](https://github.com/mikeperry-tor/vanguards) is hardening tor connections. I suggest also checking related [Tor Blog](https://blog.torproject.org/announcing-vanguards-add-onion-services) post.
   * 5-Eye countries are blocked as any kind of nodes (exit or middle). There is some warnings about this at tor logs, but safe to ignore.
