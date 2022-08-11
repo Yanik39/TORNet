@@ -24,8 +24,9 @@ RUN cd /tmp \
 		php8.1-gd php8.1-gmp php8.1-imap php8.1-intl php8.1-mbstring \
 		nano net-tools dnsutils zip unzip expect \
 	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq \
-	&& apt-get clean autoclean -qq && apt-get autoremove -y -qq \
-	&& /usr/local/bin/python3 -m pip install --upgrade pip \
+	&& apt-get clean autoclean -qq && apt-get autoremove -y -qq
+RUN \
+	/usr/local/bin/python3 -m pip install --upgrade pip \
 	&& /usr/local/bin/python3 -m pip install stem ipaddr nyx supervisor \
 	&& rm -rf /var/lib/apt/* /var/lib/cache/* /var/lib/log/* /tmp/* /var/tmp/* /var/log/* \
 		/usr/share/doc/ /usr/share/man/ /usr/share/locale/ /root/.cache /root/.gnupg \
