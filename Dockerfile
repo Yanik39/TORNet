@@ -16,21 +16,13 @@ RUN cd /tmp \
 	&& wget -qO - https://nginx.org/keys/nginx_signing.key | apt-key add - \
 	&& wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - \
 	&& apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc' \
-	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq
-	
-RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
-	deb.torproject.org-keyring tor obfs4proxy torsocks tor-geoipdb
-	
-RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
-	nginx dnsmasq
-	
-RUN 	apt-get install -y --no-install-recommends --no-install-suggests \
-	mariadb-server mariadb-client
-		
-RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
-	php8.1-mysql php8.1-xml php8.1-fpm php8.1-bcmath php8.1-bz2 php8.1-curl php8.1-dom php8.1-zip \
-	php8.1-gd php8.1-gmp php8.1-imap php8.1-intl php8.1-mbstring \
-	nano net-tools dnsutils zip unzip expect \
+	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq \
+	&& apt-get install -y --no-install-recommends --no-install-suggests -qq \
+		deb.torproject.org-keyring tor obfs4proxy torsocks tor-geoipdb \
+		nginx dnsmasq mariadb-server mariadb-client php8.1-mysql php8.1-xml \
+		php8.1-fpm php8.1-bcmath php8.1-bz2 php8.1-curl php8.1-dom php8.1-zip \
+		php8.1-gd php8.1-gmp php8.1-imap php8.1-intl php8.1-mbstring \
+		nano net-tools dnsutils zip unzip expect \
 	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq \
 	&& apt-get clean autoclean -qq && apt-get autoremove -y -qq \
 	&& /usr/local/bin/python3 -m pip install --upgrade pip \
