@@ -19,14 +19,13 @@ RUN cd /tmp \
 	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq \
 	&& apt-get install -y --no-install-recommends --no-install-suggests -qq \
 		deb.torproject.org-keyring tor obfs4proxy torsocks tor-geoipdb \
-		nginx dnsmasq mariadb-server mariadb-client php8.1-mysql php8.1-xml \
+		nginx dnsmasq php8.1-mysql php8.1-xml \
 		php8.1-fpm php8.1-bcmath php8.1-bz2 php8.1-curl php8.1-dom php8.1-zip \
 		php8.1-gd php8.1-gmp php8.1-imap php8.1-intl php8.1-mbstring \
 		nano net-tools dnsutils zip unzip expect \
 	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq \
-	&& apt-get clean autoclean -qq && apt-get autoremove -y -qq
-RUN \
-	/usr/local/bin/python3 -m pip install --upgrade pip \
+	&& apt-get clean autoclean -qq && apt-get autoremove -y -qq \
+	&& /usr/local/bin/python3 -m pip install --upgrade pip \
 	&& /usr/local/bin/python3 -m pip install stem ipaddr nyx supervisor \
 	&& rm -rf /var/lib/apt/* /var/lib/cache/* /var/lib/log/* /tmp/* /var/tmp/* /var/log/* \
 		/usr/share/doc/ /usr/share/man/ /usr/share/locale/ /root/.cache /root/.gnupg \
