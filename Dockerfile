@@ -24,7 +24,7 @@ RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
 RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
 	nginx dnsmasq
 	
-RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
+RUN 	apt-get install -y --no-install-recommends --no-install-suggests \
 	mariadb-server mariadb-client
 		
 RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
