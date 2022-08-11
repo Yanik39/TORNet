@@ -14,7 +14,7 @@ Pin: origin nginx.org
 Pin-Priority: 1020
 
 Package: *
-Pin: origin mirrors.ukfast.co.uk
+Pin: origin mirror.netweaver.uk
 Pin-Priority: 1010
 
 Package: libzstd1
