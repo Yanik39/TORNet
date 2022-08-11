@@ -1,1 +1,1 @@
-deb https://nginx.org/packages/mainline/debian/ buster nginx
+deb https://nginx.org/packages/mainline/debian/ bullseye nginx
