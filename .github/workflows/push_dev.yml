@@ -37,10 +37,10 @@ jobs:
             ghcr.io/yanik39/tornet-development:latest
       -
         name: Git Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       -
         name: Push_Docker Readme
-        uses: peter-evans/dockerhub-description@v2
+        uses: peter-evans/dockerhub-description@v3
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
