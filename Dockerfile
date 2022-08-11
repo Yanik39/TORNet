@@ -22,7 +22,13 @@ RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
 	deb.torproject.org-keyring tor obfs4proxy torsocks tor-geoipdb
 	
 RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
-	nginx dnsmasq php8.1-mysql php8.1-xml mariadb-server mariadb-client
+	nginx dnsmasq
+	
+RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
+	mariadb-server mariadb-client
+	
+RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
+	php8.1-mysql php8.1-xml
 		
 RUN 	apt-get install -y --no-install-recommends --no-install-suggests -qq \
 	php8.1-fpm php8.1-bcmath php8.1-bz2 php8.1-curl php8.1-dom php8.1-zip \
