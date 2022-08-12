@@ -7,11 +7,11 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
 ### Notes
   * It's wise to use separate Docker Network for TORNet.
     * `docker network create PrivateNet`
-  
+ 
   * To avoid permission issues pass your UID and GID as ENV variable. Please run following commands at your terminal to get your UID and GID, if you don't know them already.
     * UID: `id -u`
     * GID: `id -g`
-  
+ 
   * It's better not to pass your Timezone to Container, default is UTC.
   * You will get your random MariaDB/MySQL password at `/root` folder.
   * Please delete/rename the `phpinfo.php` file at `public_html` after checking everything is working fine.
