@@ -26,7 +26,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
   ```bash
   docker network create PrivateNet
   
-  docker run -d 
+  docker run -d \
     --name TORNet \
     -e UID=$(id -u) \
     -e GID=$(id -g) \
