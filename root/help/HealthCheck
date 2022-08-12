@@ -9,17 +9,17 @@ return3=0
 
 ownhost=$(cat /home/tor/hidden-services/service_1/hostname)
 
-timeout 10s torsocks curl -s --http1.1 --max-time 9 "https://check.torproject.org/" | grep -qm1 Congratulations
+timeout 15s torsocks curl -s --http1.1 --max-time 9 "https://check.torproject.org/" | grep -qm1 Congratulations
 return1=$?
 if [[ $return1 == 0 ]]
 then
 	echo "[Pass: Tor Project Check]"
-	timeout 10s torsocks curl -s -I --http1.1 --max-time 9 "http://5ekxbftvqg26oir5wle3p27ax3wksbxcecnm6oemju7bjra2pn26s3qd.onion" | grep -q 200
+	timeout 15s torsocks curl -s -I --http1.1 --max-time 9 "http://5ekxbftvqg26oir5wle3p27ax3wksbxcecnm6oemju7bjra2pn26s3qd.onion" | grep -q 200
 	return2=$?
 	if [[ $return2 == 0 ]]
 	then
 		echo "[Pass: Debian Onion Address]"
-		timeout 10s torsocks curl -s -I --http1.1 --max-time 9 "http://$ownhost" | grep -q nginx
+		timeout 15 torsocks curl -s -I --http1.1 --max-time 9 "http://$ownhost" | grep -q nginx
 		return3=$?
 		if [[ $return3 == 0 ]]
 		then
@@ -49,7 +49,7 @@ else
 	then
 		echo "Too Many Fails: Restarting TOR"
 		/usr/local/bin/python3 /usr/local/bin/supervisorctl -c /etc/supervisor/supervisord.conf stop TOR
-		sleep 5
+		sleep 15
 		/usr/local/bin/python3 /usr/local/bin/supervisorctl -c /etc/supervisor/supervisord.conf start TOR
 		pids=( $(pgrep curl) )
 		kill -9 ${pids[@]/#/-p } &>/dev/null
