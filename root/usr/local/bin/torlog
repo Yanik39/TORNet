@@ -37,8 +37,8 @@ function enableall()
    		sed -i "s/error_log .*/error_log \/home\/tor\/logs\/${host}_error.log;/g" $f
 	done
 	sed -i 's/^log_errors = .*/log_errors = On/g' /home/tor/php/php.ini
-	sed -i 's/^log_errors = .*/log_errors = On/g' /etc/php/8.0/fpm/php.ini
-	sed -i 's/^error_log = .*/error_log = \/home\/tor\/logs\/php8.0-fpm.log/g' /home/tor/php/php-fpm.conf
+	sed -i 's/^log_errors = .*/log_errors = On/g' /etc/php/8.1/fpm/php.ini
+	sed -i 's/^error_log = .*/error_log = \/home\/tor\/logs\/php8.1-fpm.log/g' /home/tor/php/php-fpm.conf
 	for f in /home/tor/php/pool.d/*.conf
 	do
   		sed -i "s/^catch_workers_output = .*/catch_workers_output = yes/g" $f
