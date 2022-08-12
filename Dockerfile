@@ -40,6 +40,6 @@ RUN cd /tmp \
 	
 
 HEALTHCHECK --interval=2m --timeout=39s --start-period=3m --retries=10 \
-		CMD ["/bin/bash","-c","/help/HealthCheck"]
+	CMD ["/bin/bash","-c","/help/HealthCheck"]
 	
 ENTRYPOINT ["/TORNet"]
