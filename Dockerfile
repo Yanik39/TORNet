@@ -27,7 +27,7 @@ RUN cd /tmp \
 	&& apt-get clean autoclean -qq && apt-get autoremove -y -qq \
 	&& /usr/local/bin/python3 -m pip install --upgrade pip \
 	&& /usr/local/bin/python3 -m pip install stem ipaddr nyx supervisor \
-	&& rm -rf /var/lib/apt/* /var/lib/cache/* /var/lib/log/* /tmp/* /var/tmp/* /var/log/* \
+	&& rm -rf /var/lib/apt/* /var/lib/cache/* /var/lib/log/* /tmp/* /var/tmp/* \
 		/usr/share/doc/ /usr/share/man/ /usr/share/locale/ /root/.cache /root/.gnupg \
 	&& groupadd tor && useradd -ms /bin/bash -g tor tor \
 	&& chown -R tor:tor /home/tor /usr/local/tor \
