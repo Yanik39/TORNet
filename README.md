@@ -87,7 +87,7 @@ And also to secure and optimize [Tor](https://2019.www.torproject.org/about/over
 
 ### Some Features
   * `tor <-> nginx` connection is established with socket. Nginx is not listening any IP or port.
-  * `nginx <-> php8.0-fpm` connection is established with socket.
+  * `nginx <-> php8.1-fpm` connection is established with socket.
   * `nginx` is hardened, so exposing nothing.
   * `php` is hardened by disabling any settings exposes any info.
   * `php-fpm` clears all ENV variables.
